@@ -1,0 +1,12 @@
+using System.Linq.Expressions;
+
+namespace WorkoutsMinimalApi.Interfaces;
+
+public interface IRepository<TEntity> where TEntity : class, IEntity
+{
+    Task<IEnumerable<TEntity>> GetAllAsync();
+    Task AddAsync(TEntity entity);
+    void Remove(TEntity entity);
+    Task SaveChangesAsync();
+    Task<IEnumerable<TEntity>> FindAsync(Expression<Func<TEntity, bool>> expression);
+}
