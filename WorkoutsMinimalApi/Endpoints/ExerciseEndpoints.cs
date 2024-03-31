@@ -1,3 +1,4 @@
+using WorkoutsMinimalApi.Filters;
 using WorkoutsMinimalApi.Interfaces;
 using WorkoutsMinimalApi.Models.Requests;
 
@@ -7,13 +8,12 @@ public static class ExerciseEndpoints
 {
     public static void MapExerciseEndpoints(this WebApplication app)
     {
-        app.MapPost("exercises", AddExercises);
+        app.MapPost("exercises", AddExercises).AddEndpointFilter<ValidationFilter<ExerciseCreateRequest>>();
     }
     
-    private static async Task<IResult> AddExercises(ExerciseRequest exerciseRequest, IExerciseService exerciseService)
+    private static async Task<IResult> AddExercises(ExerciseCreateRequest exerciseCreateRequest, IExerciseService exerciseService)
     {
-        var result = await exerciseService.AddAsync(exerciseRequest);
-
-        return !result ? Results.NotFound("Workout was not found!") : Results.Ok("Exercise created");
+        var result = await exerciseService.AddAsync(exerciseCreateRequest);
+        return result is null ? Results.NotFound("Workout was not found!") : Results.Created($"/workouts/{result.WorkoutId}", result);
     }
 }

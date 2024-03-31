@@ -1,7 +1,10 @@
+using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 using WorkoutsMinimalApi.ContextConfigurations;
 using WorkoutsMinimalApi.Interfaces;
+using WorkoutsMinimalApi.Models.Requests;
 using WorkoutsMinimalApi.Services;
+using WorkoutsMinimalApi.Validators;
 
 namespace WorkoutsMinimalApi.Extensions;
 
@@ -36,5 +39,12 @@ public static class ServicesExtensions
             .AddClasses(c => c.AssignableTo(typeof(IEntityFilter<>)))
             .AsSelfWithInterfaces()
             .WithScopedLifetime());
+    }
+    
+    public static void AddValidators(this IServiceCollection services)
+    {
+        services.AddScoped<IValidator<ExerciseCreateRequest>, ExerciseCreateValidator>();
+        services.AddScoped<IValidator<WorkoutCreateRequest>, WorkoutCreateValidator>();
+        services.AddScoped<IValidator<WorkoutUpdateRequest>, WorkoutUpdateValidator>();
     }
 }

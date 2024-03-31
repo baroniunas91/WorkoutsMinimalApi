@@ -7,3 +7,8 @@ public class ExerciseResponse
     public int Reps { get; set; }
     public string Duration { get; set; }
 }
+
+public class ExerciseCreateResponse : ExerciseResponse
+{
+    public int WorkoutId { get; set; }
+}

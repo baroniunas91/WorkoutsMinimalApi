@@ -11,6 +11,8 @@ public class ExerciseProfile : Profile
     {
         CreateMap<ExerciseEntity, ExerciseResponse>().ForMember(dest => dest.Duration, opt =>
             opt.MapFrom(src => src.Duration + " minutes"));
-        CreateMap<ExerciseRequest, ExerciseEntity>();
+        CreateMap<ExerciseCreateRequest, ExerciseEntity>();
+        CreateMap<ExerciseEntity, ExerciseCreateResponse>().ForMember(dest => dest.Duration, opt =>
+            opt.MapFrom(src => src.Duration + " minutes"));
     }
 }

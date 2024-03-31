@@ -1,8 +1,9 @@
 using WorkoutsMinimalApi.Models.Requests;
+using WorkoutsMinimalApi.Models.Responses;
 
 namespace WorkoutsMinimalApi.Interfaces;
 
 public interface IExerciseService
 {
-    Task<bool> AddAsync(ExerciseRequest exerciseRequest);
+    Task<ExerciseCreateResponse> AddAsync(ExerciseCreateRequest exerciseCreateRequest);
 }

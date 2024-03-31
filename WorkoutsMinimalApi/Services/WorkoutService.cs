@@ -1,7 +1,7 @@
 using AutoMapper;
 using WorkoutsMinimalApi.Entities;
+using WorkoutsMinimalApi.Helpers;
 using WorkoutsMinimalApi.Interfaces;
-using WorkoutsMinimalApi.Models;
 using WorkoutsMinimalApi.Models.Requests;
 using WorkoutsMinimalApi.Models.Responses;
 using WorkoutsMinimalApi.Repositories;
@@ -35,9 +35,9 @@ public class WorkoutService : IWorkoutService
         return response;
     }
     
-    public async Task<WorkoutResponse> AddAsync(WorkoutRequest workoutRequest)
+    public async Task<WorkoutResponse> AddAsync(WorkoutCreateRequest workoutCreateRequest)
     {
-        var newWorkout = _mapper.Map<WorkoutEntity>(workoutRequest);
+        var newWorkout = _mapper.Map<WorkoutEntity>(workoutCreateRequest);
 
         await _workoutRepository.AddAsync(newWorkout);
         await _workoutRepository.SaveChangesAsync();
@@ -68,15 +68,42 @@ public class WorkoutService : IWorkoutService
         {
             return null;
         }
-        
-        var summary = new WorkoutSummary()
-        {
-            WorkoutId = id,
-            TotalSets = workout.Exercises.Select(x => x.Sets).Sum(),
-            TotalReps = workout.Exercises.Select(x => x.Reps).Sum(),
-            TotalDuration = workout.Exercises.Select(x => x.Duration).Sum()
-        };
+
+        var summary = WorkoutHelper.CalculateWorkoutSummary(workout);
         
         return _mapper.Map<WorkoutSummaryResponse>(summary);
+    }
+    
+    public async Task<bool> LinkWorkoutDateAsync(int id, WorkoutUpdateRequest workoutUpdateRequest)
+    {
+        var workout = await _workoutRepository.FindSingleAsync(x => x.Id == id);
+
+        if (workout is null)
+        {
+            return false;
+        }
+
+        workout.Date = workoutUpdateRequest.Date.Date;
+        _workoutRepository.Update(workout);
+        await _workoutRepository.SaveChangesAsync();
+
+        return true;
+    }
+    public async Task<WorkoutCalenderResponse> GetWorkoutsHistoryByDateAsync(DateTime date)
+    {
+        var workouts = (await _workoutRepository.FindAsync(x => x.Date == date.Date)).ToList();
+
+        if (workouts.Count == 0)
+        {
+            return null;
+        }
+
+        var workoutCalenderResponse = new WorkoutCalenderResponse
+        {
+            Date = date.ToString("yyyy-MM-dd"),
+            Workouts = _mapper.Map<IEnumerable<WorkoutEntity>, IEnumerable<WorkoutHistoryResponse>>(workouts)
+        };
+
+        return workoutCalenderResponse;
     }
 }

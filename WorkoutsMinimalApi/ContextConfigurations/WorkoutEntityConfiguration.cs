@@ -12,6 +12,7 @@ public class WorkoutEntityConfiguration : IEntityTypeConfiguration<WorkoutEntity
         builder.Property(e => e.Id).HasColumnName("id");
         builder.Property(e => e.Title).HasColumnName("title").HasColumnType("varchar(255)");
         builder.Property(e => e.Description).HasColumnName("description").HasColumnType("varchar(255)");
+        builder.Property(e => e.Date).HasColumnName("date").HasColumnType("timestamp");
         builder.HasMany(x => x.Exercises)
             .WithOne(x => x.Workout)
             .HasForeignKey(x => x.WorkoutId);

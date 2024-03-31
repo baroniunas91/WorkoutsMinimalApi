@@ -47,6 +47,11 @@ public class Repository<TEntity> : IRepository<TEntity> where TEntity : class, I
         return await query.Where(expression).ToListAsync();
     }
     
+    public void Update(TEntity entity)
+    {
+        _context.Set<TEntity>().Update(entity);
+    }
+    
     public async Task SaveChangesAsync()
     {
         await _context.SaveChangesAsync();

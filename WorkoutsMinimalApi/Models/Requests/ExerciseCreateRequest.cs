@@ -1,6 +1,6 @@
 namespace WorkoutsMinimalApi.Models.Requests;
 
-public class ExerciseRequest
+public class ExerciseCreateRequest
 {
     public int WorkoutId { get; set; }
     public string Name { get; set; }
