@@ -3,4 +3,5 @@
 2. Update your mysql connection string in appsettings.json
 3. Run dotnet ef database update --project WorkoutsMinimalApi (It will automatically create database "workoutsdb" in your MySQL server).
 4. Run the project.
-5. Enjoy.
+5. Postman collection attached WorkoutsMinimalApi.postman_collection.json
+6. Enjoy.

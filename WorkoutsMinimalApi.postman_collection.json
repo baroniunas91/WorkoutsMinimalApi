@@ -1,0 +1,197 @@
+{
+	"info": {
+		"_postman_id": "062667ca-d9a4-411d-a973-828e2007a4d9",
+		"name": "WorkoutsMinimalApi",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "13611413"
+	},
+	"item": [
+		{
+			"name": "workouts",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:5070/workouts",
+					"host": [
+						"localhost"
+					],
+					"port": "5070",
+					"path": [
+						"workouts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "workouts/{id}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:5070/workouts/9",
+					"host": [
+						"localhost"
+					],
+					"port": "5070",
+					"path": [
+						"workouts",
+						"9"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "workouts/{id}",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"date\": \"2024-04-01\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5070/workouts/2",
+					"host": [
+						"localhost"
+					],
+					"port": "5070",
+					"path": [
+						"workouts",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "workouts/{id}/summary",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:5070/workouts/2/summary",
+					"host": [
+						"localhost"
+					],
+					"port": "5070",
+					"path": [
+						"workouts",
+						"2",
+						"summary"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "workouts/history/{date}",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:5070/workouts/history/2024-04-01",
+					"host": [
+						"localhost"
+					],
+					"port": "5070",
+					"path": [
+						"workouts",
+						"history",
+						"2024-04-01"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "workouts",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"Upper Body Workout\",\r\n    \"description\": \"Focuses on chest, shoulders, back, and arms.\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5070/workouts",
+					"host": [
+						"localhost"
+					],
+					"port": "5070",
+					"path": [
+						"workouts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "exercises",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"workoutId\": 2,\r\n    \"name\": \"Push-ups\",\r\n    \"sets\": 3,\r\n    \"reps\": 10,\r\n    \"duration\": 15\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5070/exercises",
+					"host": [
+						"localhost"
+					],
+					"port": "5070",
+					"path": [
+						"exercises"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "workouts/{id}",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"title\": \"Upper Body Workout\",\r\n    \"description\": \"Focuses on chest, shoulders, back, and arms.\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:5070/workouts/1",
+					"host": [
+						"localhost"
+					],
+					"port": "5070",
+					"path": [
+						"workouts",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
