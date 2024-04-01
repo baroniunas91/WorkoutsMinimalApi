@@ -1,5 +1,3 @@
-using WorkoutsMinimalApi.Entities;
-
 namespace WorkoutsMinimalApi.Models.Responses;
 
 public class WorkoutResponse

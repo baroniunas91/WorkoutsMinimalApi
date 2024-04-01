@@ -10,10 +10,10 @@ public static class WorkoutEndpoints
     {
         app.MapGet("workouts", GetAllWorkouts);
         app.MapGet("workouts/{id:int}", GetWorkoutById);
-        app.MapPost("workouts", AddWorkout).AddEndpointFilter<ValidationFilter<WorkoutCreateRequest>>();;
+        app.MapPost("workouts", AddWorkout).AddEndpointFilter<ValidationFilter<WorkoutCreateRequest>>();
         app.MapDelete("workouts/{id:int}", DeleteWorkout);
         app.MapGet("workouts/{id:int}/summary", GetWorkoutSummary);
-        app.MapPut("workouts/{id:int}", LinkWorkoutDate).AddEndpointFilter<ValidationFilter<WorkoutUpdateRequest>>();;
+        app.MapPut("workouts/{id:int}", LinkWorkoutDate).AddEndpointFilter<ValidationFilter<WorkoutUpdateRequest>>();
         app.MapGet("workouts/history/{date:datetime}", GetWorkoutsHistoryByDate);
     }
     

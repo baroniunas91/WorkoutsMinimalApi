@@ -1,4 +1,3 @@
-using WorkoutsMinimalApi.Models;
 using WorkoutsMinimalApi.Models.Requests;
 using WorkoutsMinimalApi.Models.Responses;
 
